@@ -21,10 +21,11 @@ El pipeline de Integración Continua garantiza que todo código nuevo esté vali
 
 - **Disparador (Trigger):** Se ejecuta automáticamente ante cada evento `push` o `pull_request` hacia la rama `main`.
 - **Flujo de Ejecución:**
-  1. **Checkout del Código:** Utiliza la acción `actions/checkout@v4` para descargar el repositorio.
-  2. **Configuración del Entorno:** Utiliza `actions/setup-java@v4` para instalar Java 21 (Temurin) e inicializar el caché de dependencias de Maven.
-  3. **Instalación y Pruebas - ms-books:** Se posiciona en la carpeta de `ms-books` y ejecuta las pruebas unitarias mediante `./mvnw clean test`.
-  4. **Instalación y Pruebas - ms-loans:** Se posiciona en la carpeta de `ms-loans` y ejecuta las pruebas unitarias mediante `./mvnw clean test`.
+
+1. **Checkout del Código:** Utiliza la acción `actions/checkout@v4` para descargar el repositorio.
+2. **Configuración del Entorno:** Utiliza `actions/setup-java@v4` para instalar Java 21 (Temurin) e inicializar el caché de dependencias de Maven.
+3. **Instalación y Pruebas - ms-books:** Se posiciona en la carpeta de `ms-books` y ejecuta las pruebas unitarias mediante `./mvnw clean test`.
+4. **Instalación y Pruebas - ms-loans:** Se posiciona en la carpeta de `ms-loans` y ejecuta las pruebas unitarias mediante `./mvnw clean test`.
 
 **Código del Pipeline:**
 
@@ -74,11 +75,12 @@ jobs:
 El pipeline de Entrega Continua (CD) define el proceso automatizado para empaquetar la aplicación y preparar los artefactos Docker listos para el despliegue.
 
 - **Flujo de Ejecución:**
-  1. **Clone Repository:** Descarga el código actualizado del repositorio desde el cual fue gatillado Jenkins.
-  2. **Build Maven:** Ejecuta la compilación y el empaquetado de los archivos JAR para ambos microservicios, omitiendo las pruebas (ya que fueron validadas en el CI). Comando: `./mvnw clean package -DskipTests`.
-  3. **Build Docker Images:** Construye las imágenes Docker utilizando los archivos `Dockerfile` presentes en la raíz de cada microservicio.
-     - Etiqueta local: `brayansantiagodev/ms-books` y `brayansantiagodev/ms-loans`.
-  4. **Push to Registry:** Autentica la sesión de Jenkins con DockerHub utilizando credenciales seguras y publica las imágenes en el repositorio público bajo el usuario `brayansantiagodev`.
+
+1. **Clone Repository:** Descarga el código actualizado del repositorio desde el cual fue gatillado Jenkins.
+2. **Build Maven:** Ejecuta la compilación y el empaquetado de los archivos JAR para ambos microservicios, omitiendo las pruebas (ya que fueron validadas en el CI). Comando: `./mvnw clean package -DskipTests`.
+3. **Build Docker Images:** Construye las imágenes Docker utilizando los archivos `Dockerfile` presentes en la raíz de cada microservicio.
+   - Etiqueta local: `brayansantiagodev/ms-books` y `brayansantiagodev/ms-loans`.
+4. **Push to Registry:** Autentica la sesión de Jenkins con DockerHub utilizando credenciales seguras y publica las imágenes en el repositorio público bajo el usuario `brayansantiagodev`.
 
 **Código del Pipeline:**
 
