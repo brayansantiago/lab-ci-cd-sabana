@@ -160,6 +160,8 @@ pipeline {
 ![GitHub Actions Proceso](img/actions2.png)
 ![GitHub Actions Success](img/actions1.png)
 ![GitHub Actions Success1](img/actions3.png)
+![test1](img/test1.png)
+![test2](img/test2.png)
 
 ### 2. Ejecución Exitosa: Jenkins (CD)
 ![Jenkins](img/jenkins2.png)
