@@ -51,15 +51,12 @@ pipeline {
                 sh "docker push ${IMAGE_BOOKS}:${IMAGE_TAG}"
                 sh "docker push ${IMAGE_LOANS}:latest"
                 sh "docker push ${IMAGE_LOANS}:${IMAGE_TAG}"
+                sh "docker logout"
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline finalizado. Limpiando...'
-            sh "docker logout"
-        }
         success {
             echo 'Pipeline ejecutado con éxito.'
         }
